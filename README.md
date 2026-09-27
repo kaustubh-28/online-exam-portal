@@ -1,245 +1,139 @@
-<!--
-Hey, thanks for using the awesome-readme-template template.  
-If you have any enhancements, then fork this project and create a pull request 
-or just open an issue with the label "enhancement".
-Don't forget to give this project a star for additional support ;)
-Maybe you can mention me or this repo in the acknowledgements too
--->
-<div align="center">
-  <h1>Online Exam Portal</h1>
-  <p>
-    A Online Exam portal website with backend in Nodejs and frontend in React js 
-  </p>
-  
-<!-- Badges -->
-<p>
-  <a href="https://github.com/kaustubh-28/online-exam-portal/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/kaustubh-28/online-exam-portal" alt="contributors" />
-  </a>
-  <a href="">
-    <img src="https://img.shields.io/github/last-commit/kaustubh-28/online-exam-portal" alt="last update" />
-  </a>
-  <a href="https://github.com/kaustubh-28/online-exam-portal/network/members">
-    <img src="https://img.shields.io/github/forks/kaustubh-28/online-exam-portal" alt="forks" />
-  </a>
-  <a href="https://github.com/kaustubh-28/online-exam-portal/stargazers">
-    <img src="https://img.shields.io/github/stars/kaustubh-28/online-exam-portal" alt="stars" />
-  </a>
-  <a href="https://github.com/kaustubh-28/online-exam-portal/issues/">
-    <img src="https://img.shields.io/github/issues/kaustubh-28/online-exam-portal" alt="open issues" />
-  </a>
-</p>
-   
-<h4>
-    <a href="https://kaustubh-28.github.io/online-exam-portal-frontend/">View Demo</a>
-  <span> · </span>
-    <a href="https://github.com/kaustubh-28/online-exam-portal/issues/">Report Bug</a>
-  <span> · </span>
-    <a href="https://github.com/kaustubh-28/online-exam-portal/issues/">Request Feature</a>
-  </h4>
-</div>
+# Online Exam Portal
 
-<br />
+A full-stack web application designed for conducting online exams and assessments, featuring dedicated interfaces for Administrators, Teachers, and Students.
 
-<!-- Table of Contents -->
-# :notebook_with_decorative_cover: Table of Contents
+---
 
-- [About the Project](#star2-about-the-project)
-  * [Tech Stack](#space_invader-tech-stack)
-  * [Features](#dart-features)
-  * [Environment Variables](#key-environment-variables)
-- [Getting Started](#toolbox-getting-started)
-  * [Prerequisites](#bangbang-prerequisites)
-  * [Run Locally](#running-run-locally)
-  * [Run with Docker](#run-with-docker)
-- [To-do](#notes-to-do)
-- [Contributing](#wave-contributing)
-- [License](#warning-license)
-- [Contact](#handshake-contact)
-- [Acknowledgements](#gem-acknowledgements)
+## Overview
 
-  
+The repository consists of three components:
 
-<!-- About the Project -->
-## :star2: About the Project
-  Web Application for online MCQ test usecase
+- **Backend (`/backend`)**: Node.js & Express REST API with MongoDB. Handles JWT authentication, question and exam scheduling logic, automated scoring, and user role management.
+- **Admin Portal (`/frontend`)**: React dashboard for administrators to oversee subjects, teachers, and platform configurations.
+- **User Portal (`/user-portal-frontend`)**: React application for teachers (question bank creation, exam configuration) and students (taking tests and reviewing results).
 
+---
 
-<!-- TechStack -->
-### :space_invader: Tech Stack
+## Features
 
-<details>
-  <summary>Frontend</summary>
-  <ul>
-    <li><a href="https://reactjs.org/">React.js</a></li>
-    <li><a href="https://react-redux.js.org/">React-Redux</a></li>
-    <li><a href="https://www.mui.com">Material UI library</a></li>
-    <li><a href="https://html.com/html5/">HTML 5</a></li>
-    <li><a href="https://www.css3.com/">CSS 3</a></li>
-  </ul>
-</details>
+### Student
+- Browse upcoming and available tests
+- Register and take timed MCQ assessments
+- Immediate results upon submission with explanations and answer keys
 
-<details>
-  <summary>Backend</summary>
-  <ul>
-    <li><a href="https://www.nodejs.org">Node.js</a></li>
-    <li><a href="https://www.expressjs.com/">Express.js</a></li>
-    <li><a href="https://www.passportjs.org/">Passport.js</a></li>
-  </ul>
-</details>
+### Teacher
+- Question bank management (create, update, organize questions by subject)
+- Create and schedule exams with custom duration, passing marks, and question sets
+- View test submissions and student performance
 
-<details>
-<summary>Database</summary>
-  <ul>
-    <li><a href="https://www.mongodb.com/">MongoDB</a></li>
-  </ul>
-</details>
+### Admin
+- Manage teacher accounts and access permissions
+- Create and manage subjects / course categories
+- Platform monitoring and user administration
 
+---
 
-<!-- Features -->
-### :dart: Features
+## Tech Stack
 
-- Student User
-  - View Tests Details
-  - Register for test
-  - Give Test
-  - Check Result and correct answer and explanation for questions
-- Teacher User
-  - Create, Update Questions and Question Banks
-  - Create, View Test
-- Admin User
-  - Create and Manage Teacher users
-  - Create and Manage subjects
+- **Frontend**: React.js, Redux, Material-UI, Axios
+- **Backend**: Node.js, Express.js, Passport.js (JWT & Local Strategy), Mongoose
+- **Database**: MongoDB
+- **DevOps**: Docker & Docker Compose
 
+---
 
-<!-- Env Variables -->
-### :key: Environment Variables
+## Getting Started
 
-To run this project, you will need to add the following variables to your backend/config.json file
+### Prerequisites
 
-`mongodb.connectionString`
-`jwt.secret`
+- [Node.js](https://nodejs.org/) (v16 or newer recommended)
+- [MongoDB](https://www.mongodb.com/) running locally on port `27017` (or use Docker)
 
-<!-- Getting Started -->
-## 	:toolbox: Getting Started
+---
 
-<!-- Prerequisites -->
-### :bangbang: Prerequisites
+### Local Setup
 
-This project uses MongoDB as database. please install mongodb server in local environment.
+1. **Clone the repo:**
+   ```bash
+   git clone https://github.com/kaustubh-28/online-exam-portal.git
+   cd online-exam-portal
+   ```
 
-<!-- Run Locally -->
-### :running: Run Locally
+2. **Configure environment settings:**
+   Check `backend/config/default.json` and adjust the MongoDB connection string or JWT secret if needed:
+   ```json
+   {
+     "mongodb": {
+       "connectionString": "mongodb://localhost:27017/Online-Exam-Portal"
+     },
+     "jwt": {
+       "secret": "your_jwt_secret"
+     }
+   }
+   ```
 
-Clone the project
+3. **Install dependencies:**
+   ```bash
+   # Backend
+   cd backend && npm install
+
+   # Admin frontend
+   cd ../frontend && npm install
+
+   # Student & Teacher user portal
+   cd ../user-portal-frontend && npm install
+   ```
+
+4. **Run the services:**
+   Open three terminal tabs and start each service:
+
+   ```bash
+   # Terminal 1: Backend API (runs on port 5000)
+   cd backend
+   npm start
+
+   # Terminal 2: Admin Portal (runs on port 3000)
+   cd frontend
+   npm start
+
+   # Terminal 3: User Portal (runs on port 3001)
+   cd user-portal-frontend
+   npm start
+   ```
+
+> **Default Admin Account**:
+> On initial backend start, a default administrator is seeded automatically:
+> - **Username**: `sysadmin`
+> - **Password**: `systemadmin`
+>
+> *(Configured in `backend/services/admin.js` via `addAdminIfNotFound()`)*
+
+---
+
+### Running with Docker
+
+To build and run all services (MongoDB, Mongo Express, Backend, Admin UI, User UI) together:
 
 ```bash
-  git clone https://github.com/kaustubh-28/online-exam-portal.git
+docker-compose up --build
 ```
 
-Go to the project directory
+Default container ports:
+- **Backend API**: `http://localhost:5000`
+- **Admin Frontend**: `http://localhost:3100`
+- **User Frontend**: `http://localhost:3200`
+- **Mongo Express GUI**: `http://localhost:8080`
 
-```bash
-  cd project-directory
-```
+---
 
-Install dependencies
+## Author
 
-```bash
-  cd backend
-  npm install
-  cd ../frontend
-  npm install
-  cd ../user-portal-frontend
-  npm install
-```
+- **Kaustubh Srivastava**
+- GitHub: [@kaustubh-28](https://github.com/kaustubh-28)
+- Email: kaustubh282.s@gmail.com
 
-Start the backend server
+---
 
-```bash
-  cd backend
-  npm start
-```
+## License
 
-Start the frontend client for admin
-
-```bash
-  cd frontend
-  npm start
-```
-
-Start the frontend client for teacher/student
-
-```bash
-  cd user-portal-frontend
-  npm start
-```
-
-<b>Note</b> : admin user is created when backend runs first time. default admin (username, password) details are <b>("sysadmin","systemadmin"). addAdminIfNotFound() function of backend/services/admin.js file </b> is for this logic. You can check/modify default admin details from this function.
-
-<!-- Run with Docker -->
-### Run With Docker
-
-build docker images
-
-```bash
-  docker-compose build
-```
-
-Run container and services
-
-```bash
-  docker-compose up
-```
-
-Use following paths 
-
-```bash
-  Backend server : localhost:5000/
-  Admin Frontend : localhost:3100/
-  User  Frontend : localhost:3200/
-```
-
-<!-- To Do -->
-## :notes: to-do
-  <ul>
-  <li> add more features </li>
-  </ul>
- 
-<!-- Contributing -->
-## :wave: Contributing
-
-<a href="https://github.com/kaustubh-28/online-exam-portal/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=kaustubh-28/online-exam-portal" />
-</a>
-
-
-Contributions are always welcome!
-
-See `contributing.md` for ways to get started.
-
-
-
-
-<!-- License -->
-## :warning: License
-
-Distributed under the no License. 
-
-
-<!-- Contact -->
-## :handshake: Contact
-
-Kaustubh Srivastava - kaustubh282.s@gmail.com
-
-Project Link: [https://github.com/kaustubh-28/online-exam-portal](https://github.com/kaustubh-28/online-exam-portal)
-
-
-<!-- Acknowledgments -->
-## :gem: Acknowledgements
-Following libraries have been used in this projects.
-
- - [Material UI](https://www.mui.com)
- - [Passport JS](https://www.passportjs.org/)
- - [Awesome Readme Template](https://github.com/Louis3797/awesome-readme-template)
-
+This project is licensed under the [MIT License](LICENSE).
